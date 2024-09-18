@@ -1,5 +1,9 @@
 import requests
 import csv
+from bs4 import BeautifulSoup
+
+base_url = "https://www.elespectador.com"
+trick_url = "?outputType=amp"
 
 # Función para extraer noticias de una sección específica
 def extraer_noticias(seccion, size=10):
@@ -19,6 +23,7 @@ def extraer_noticias(seccion, size=10):
                 'seccion': item.get('taxonomy', {}).get('primary_section', {}).get('name', 'Sin sección'),
                 'fecha_publicacion': item.get('first_publish_date', 'Sin fecha'),
                 'autores': ', '.join([autor.get('name', 'Desconocido') for autor in item.get('credits', {}).get('by', [])]),
+                'url': base_url + item.get('canonical_url', 'Sin URL') + trick_url
             }
             noticias.append(noticia)
         
@@ -27,11 +32,32 @@ def extraer_noticias(seccion, size=10):
     except requests.exceptions.RequestException as e:
         print(f"Error al hacer la solicitud: {e}")
         return []
+    
+# Función para extraer el contenido del artículo dado su URL
+def extraer_contenido_articulo(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        html_content = response.text
+        soup = BeautifulSoup(html_content, 'html.parser')
+        
+        # Buscar todos los párrafos con la clase "font--secondary"
+        paragraphs = soup.find_all('p', class_='font--secondary')
+        
+        # Unir el texto de todos los párrafos encontrados
+        article_text = '\n'.join([para.get_text() for para in paragraphs])
+        
+        if article_text:
+            return article_text
+        else:
+            return "No se encontró contenido en el artículo."
+    else:
+        return f"Error al acceder a la URL: {response.status_code}"
 
 # Función para guardar noticias en un archivo CSV
-def guardar_noticias_csv(noticias, nombre_archivo='noticias.csv'):
+def guardar_noticias_csv(noticias, nombre_archivo='noticias_elespectador.csv'):
     with open(nombre_archivo, mode='w', newline='', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames=['titulo', 'descripcion', 'seccion', 'fecha_publicacion', 'autores'])
+        writer = csv.DictWriter(file, fieldnames = ['titulo', 'descripcion', 'contenido_articulo', 'seccion', 'fecha_publicacion', 'autores', 'url']
+)
         writer.writeheader()
         for noticia in noticias:
             writer.writerow(noticia)
@@ -50,10 +76,16 @@ tamaño_por_categoria = 20
 # Lista para almacenar todas las noticias
 todas_las_noticias = []
 
-# Extraer noticias de cada sección
 for seccion in secciones:
     print(f"Extrayendo noticias de la sección {seccion}...")
     noticias = extraer_noticias(seccion, tamaño_por_categoria)
+    
+    # Para cada noticia, obtenemos también el contenido del artículo
+    for noticia in noticias:
+        print(f"Extrayendo contenido del artículo: {noticia['url']}")
+        contenido = extraer_contenido_articulo(noticia['url'])
+        noticia['contenido_articulo'] = contenido  # Añadir el contenido del artículo a la noticia
+    
     todas_las_noticias.extend(noticias)
 
 # Guardar todas las noticias en un archivo CSV
