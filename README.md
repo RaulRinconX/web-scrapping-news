@@ -2,6 +2,10 @@
 
 ## 1. Explicacion del proyecto
 ## 2. Paquetes necesarios para ejecutarlo
+## 3. Pasos para ver el resultado
+
+
+## 1. Explicacion del proyecto
 
 ### ¿Qué es TF-IDF y cómo funciona?
 
@@ -57,9 +61,22 @@ Una puntuación TF-IDF baja indica que la palabra aparece frecuentemente en much
 
 Por ejemplo, si una palabra como "salud" tiene una puntuación de 6.66, significa que es relevante para el contenido del artículo donde aparece, pero no tan común en todos los documentos, por lo que se considera importante en su contexto.
 
+## 2. Paquetes necesarios para ejecutarlo
 
 ------ instalar en la terminal los paquetes necesarios ------
+
+buscar en windows terminal o directamente en la terminal de VSCode
 
 - pip install requests
 - pip install spacy
 - python -m spacy download es_core_news_sm
+
+## 3. Pasos para ver el resultado
+
+1. Clonar el archivo usando en una terminal -> git clone https://github.com/RaulRinconX/web-scrapping-news.git
+2. Abrir el proyecto y ejecutar "scraping_elespectador.py"
+3. En dadoo caso que falle el scrapper por error de SSL o TLS, ejecutarlo de nuevo sin problema y asi hasta que funcione :P
+4. Al terminar de ejecutarse el scrapper nos genera un archivo csv con los datos de las noticias en la carpeta Datos
+5. Ejecutar data_analisis.py 
+6. Ingresar el numero de palabras deseadas a retornar por el modelo
+7. Ver el resultado.

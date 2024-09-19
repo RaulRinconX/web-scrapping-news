@@ -54,7 +54,7 @@ def extraer_contenido_articulo(url):
         return f"Error al acceder a la URL: {response.status_code}"
 
 # Función para guardar noticias en un archivo CSV
-def guardar_noticias_csv(noticias, nombre_archivo='noticias_elespectador.csv'):
+def guardar_noticias_csv(noticias, nombre_archivo='Datos/noticias_elespectador.csv'):
     with open(nombre_archivo, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames = ['titulo', 'descripcion', 'contenido_articulo', 'seccion', 'fecha_publicacion', 'autores', 'url']
 )
@@ -89,4 +89,4 @@ for seccion in secciones:
     todas_las_noticias.extend(noticias)
 
 # Guardar todas las noticias en un archivo CSV
-guardar_noticias_csv(todas_las_noticias, 'noticias_elespectador.csv')
+guardar_noticias_csv(todas_las_noticias, 'Datos/noticias_elespectador.csv')
