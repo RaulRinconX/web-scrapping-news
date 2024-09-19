@@ -1,6 +1,4 @@
-# web-scrapping-news
-
-## Web scrapper Espectador newspaper.
+# Web scrapper Espectador newspaper.
 
 ## 1. Explicacion del proyecto
 ## 2. Paquetes necesarios para ejecutarlo
@@ -62,6 +60,6 @@ Por ejemplo, si una palabra como "salud" tiene una puntuación de 6.66, signific
 
 ------ instalar en la terminal los paquetes necesarios ------
 
-pip install requests
-pip install spacy
-python -m spacy download es_core_news_sm
+- pip install requests
+- pip install spacy
+- python -m spacy download es_core_news_sm
