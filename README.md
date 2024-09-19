@@ -1,9 +1,10 @@
 # Web scrapper Espectador newspaper.
 
+--------------------------------------------
 ## 1. Explicacion del proyecto
 ## 2. Paquetes necesarios para ejecutarlo
 ## 3. Pasos para ver el resultado
-
+--------------------------------------------
 
 ## 1. Explicacion del proyecto
 
