@@ -76,8 +76,8 @@ buscar en windows terminal o directamente en la terminal de VSCode
 
 1. Clonar el archivo usando en una terminal -> git clone https://github.com/RaulRinconX/web-scrapping-news.git
 2. Abrir el proyecto y ejecutar "scraping_elespectador.py"
-3. En dadoo caso que falle el scrapper por error de SSL o TLS, ejecutarlo de nuevo sin problema y asi hasta que funcione :P
-4. Al terminar de ejecutarse el scrapper nos genera un archivo csv con los datos de las noticias en la carpeta Datos
+3. En dado caso que falle el script por error de SSL o TLS, ejecutarlo de nuevo sin problema y asi hasta que funcione :P
+4. Al terminar de ejecutarse el script nos genera un archivo csv con los datos de las noticias en la carpeta Datos
 5. Ejecutar data_analisis.py 
 6. Ingresar el numero de palabras deseadas a retornar por el modelo
 7. Ver el resultado.
