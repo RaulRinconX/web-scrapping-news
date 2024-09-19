@@ -68,9 +68,11 @@ Por ejemplo, si una palabra como "salud" tiene una puntuación de 6.66, signific
 
 buscar en windows terminal o directamente en la terminal de VSCode
 
+- pip install pandas
 - pip install requests
 - pip install spacy
 - python -m spacy download es_core_news_sm
+- pip install -U scikit-learn
 
 ## 3. Pasos para ver el resultado
 
